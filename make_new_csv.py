@@ -155,13 +155,38 @@ country_year["prev_medals_per_athlete"] = (
 )
 
 # =========================
-# 6. ADD PLACEHOLDER EXTERNAL COLUMNS
+# 6. MERGE EXTERNAL COLUMNS
 # =========================
-# These require another dataset such as World Bank data
+# Map NOC to ISO3. 
+# Note: For strict accuracy, you might want to join your `noc_regions.csv` 
+# here if NOC codes differ slightly from standard World Bank ISO3 codes.
 country_year["ISO3"] = country_year["NOC"]
-country_year["population"] = np.nan
-country_year["gdp_per_capita"] = np.nan
+
+# Load Population data
+pop_df = pd.read_csv("population.csv")
+pop_df = pop_df[["Country Code", "Year", "Value"]].rename(
+    columns={"Country Code": "ISO3", "Value": "population"}
+)
+
+# Load GDP data
+gdp_df = pd.read_csv("gdp.csv")
+gdp_df = gdp_df[["Country Code", "Year", "Value"]].rename(
+    columns={"Country Code": "ISO3", "Value": "gdp_total"}
+)
+
+# Merge Population and GDP into the main country_year dataframe
+country_year = country_year.merge(pop_df, on=["ISO3", "Year"], how="left")
+country_year = country_year.merge(gdp_df, on=["ISO3", "Year"], how="left")
+
+# Calculate GDP per Capita
+country_year["gdp_per_capita"] = country_year["gdp_total"] / country_year["population"]
+
+# Drop gdp_total as we only need gdp_per_capita
+country_year = country_year.drop(columns=["gdp_total"])
+
+# Add income_group placeholder (if you want to bring this in later)
 country_year["income_group"] = np.nan
+
 
 # =========================
 # 7. REORDER COLUMNS

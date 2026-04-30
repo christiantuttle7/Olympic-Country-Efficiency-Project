@@ -70,15 +70,39 @@ female_pct = (
     .reset_index(name="female_athlete_percentage")
 )
 
+# =========================
+# FIXED MEDAL COUNTS
+# Count one medal per country-event, not one medal per athlete
+# =========================
+
+medal_rows = df[df["Medal"].notna()].copy()
+
+# One country gets one medal per event per medal type
+unique_medals = medal_rows.drop_duplicates(
+    subset=["NOC", "Year", "Event", "Medal"]
+)
+
 medal_counts = (
-    df.groupby(["NOC", "Year"])[["Gold", "Silver", "Bronze"]]
-    .sum()
+    unique_medals.groupby(["NOC", "Year", "Medal"])
+    .size()
+    .unstack(fill_value=0)
     .reset_index()
 )
 
+# Make sure all medal columns exist
+for medal in ["Gold", "Silver", "Bronze"]:
+    if medal not in medal_counts.columns:
+        medal_counts[medal] = 0
+
 medal_counts["total_medals"] = (
-    medal_counts["Gold"] + medal_counts["Silver"] + medal_counts["Bronze"]
+    medal_counts["Gold"]
+    + medal_counts["Silver"]
+    + medal_counts["Bronze"]
 )
+
+medal_counts = medal_counts[
+    ["NOC", "Year", "Gold", "Silver", "Bronze", "total_medals"]
+]
 
 host_flag = (
     df.groupby(["NOC", "Year"])["host_country"]
@@ -127,10 +151,10 @@ gdp_df = gdp_df[["Country Code", "Year", "Value"]].rename(
     columns={"Country Code": "ISO3", "Value": "gdp_total"}
 )
 
-urban_df = pd.read_csv("Datasets/urban_percentage.csv")
-urban_df = gdp_df[["Country Code", "1960", "1964", "1972", "19" "Value"]].rename(
-    columns={"Country Code": "ISO3", "Value": "gdp_total"}
-)
+#urban_df = pd.read_csv("Datasets/urban_percentage.csv")
+#urban_df = gdp_df[["Country Code", "1960", "1964", "1972", "19" "Value"]].rename(
+#    columns={"Country Code": "ISO3", "Value": "gdp_total"}
+#)
 
 country_year = country_year.merge(pop_df, on=["ISO3", "Year"], how="left")
 country_year = country_year.merge(gdp_df, on=["ISO3", "Year"], how="left")

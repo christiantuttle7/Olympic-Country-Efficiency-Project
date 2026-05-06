@@ -123,9 +123,7 @@ country_year["medals_per_athlete"] = (
     country_year["total_medals"] / country_year["athletes_sent"]
 )
 
-# =========================
-# 5. PREVIOUS OLYMPICS FEATURES
-# =========================
+#Previous Olympic Features
 country_year = country_year.sort_values(["NOC", "Year"]).reset_index(drop=True)
 
 country_year["prev_total_medals"] = (
@@ -136,9 +134,7 @@ country_year["prev_medals_per_athlete"] = (
     country_year.groupby("NOC")["medals_per_athlete"].shift(1).fillna(0)
 )
 
-# =========================
-# 6. MERGE EXTERNAL DATA
-# =========================
+# Merge data
 country_year["ISO3"] = country_year["NOC"]
 
 pop_df = pd.read_csv("Datasets/population.csv")
@@ -151,10 +147,6 @@ gdp_df = gdp_df[["Country Code", "Year", "Value"]].rename(
     columns={"Country Code": "ISO3", "Value": "gdp_total"}
 )
 
-#urban_df = pd.read_csv("Datasets/urban_percentage.csv")
-#urban_df = gdp_df[["Country Code", "1960", "1964", "1972", "19" "Value"]].rename(
-#    columns={"Country Code": "ISO3", "Value": "gdp_total"}
-#)
 
 country_year = country_year.merge(pop_df, on=["ISO3", "Year"], how="left")
 country_year = country_year.merge(gdp_df, on=["ISO3", "Year"], how="left")
@@ -166,9 +158,7 @@ country_year["gdp_per_capita"] = (
 country_year = country_year.drop(columns=["gdp_total"])
 country_year["income_group"] = np.nan
 
-# =========================
-# 7. FINAL FORMAT
-# =========================
+#Finalize the new df
 final_cols = [
     "NOC", "ISO3", "Year", "population", "gdp_per_capita",
     "income_group", "host_country", "athletes_sent",
@@ -180,9 +170,7 @@ final_cols = [
 
 country_year = country_year[final_cols].sort_values(["NOC", "Year"]).reset_index(drop=True)
 
-# =========================
-# 8. SAVE
-# =========================
+#save
 print(country_year.head(10))
 country_year.to_csv("olympics_country_year_features.csv", index=False)
 print("\nSaved to olympics_country_year_features.csv")

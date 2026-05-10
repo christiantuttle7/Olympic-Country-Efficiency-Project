@@ -1,0 +1,31 @@
+1. Clearly Defined Problem Statement
+  Self Grade: 5
+  Reason: We clearly define what we would like to do when comparing countrys competing in the olympics
+2. Understanding The Domain and Context
+  Self Grade: 5
+  Reason: We show how olympics metrics are typically calculated and how we want to change that
+2. Data Cleaning and handling missing values
+  Self Grade: 5
+  Reason: We create our own frankenstein dataset using multiple other datasets, missing values were dropped but that what deemed the best option after careful consideration
+4. Feature Engineering and Selection
+  Self Grade: 5
+  Reason: We had to combine datasets in order to get the features we wanted to use. 
+5. Data Normalization and Scaling
+  Self Grade: 5
+  Reason: We Normalized a lot of the variables especially before training a regression model. We did this using MinMaxScaler.
+6. Selection of Apprpriate ML Algorithms
+  Self Grade: 5
+  Reason: We tried multiple different ones like random forest, xgboost, and linear regression. There are some more we may could have tried like KNN.
+7. Model Training and Tuning
+  Self Grade: 5
+8. Evaluation Metrics and Performance Analysis
+  Self Grade: 5
+9. Novelty and Originality of Approach
+  Self Grade: 5
+10. Exploration of Advanced Techniques
+  Self Grade: 4
+11. Quality of Visualiztions and Insights
+  Self Grade: 4
+12. Ability to communicate results effectively
+  Self Grade: 5
+  

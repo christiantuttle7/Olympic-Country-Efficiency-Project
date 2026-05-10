@@ -102,21 +102,6 @@ We experimented with several machine learning models, including:
 
 ---
 
-# Technologies Used
 
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-- XGBoost
-- Flask
-- Gunicorn
-- Jupyter Notebook
-- Matplotlib
-
----
-
-# Authors
-Christian Tuttle and team
 
 

@@ -1,9 +1,11 @@
+Self Grade: 
+
 1. Clearly Defined Problem Statement
   Self Grade: 5
-  Reason: We clearly define what we would like to do when comparing countrys competing in the olympics
+  Reason: We clearly define what we would like to do when comparing countries competing in the olympics
 2. Understanding The Domain and Context
   Self Grade: 5
-  Reason: We show how olympics metrics are typically calculated and how we want to change that
+  Reason: We show how olympics metrics are typically calculated and how we want to change that. This can all be found in our presentation
 2. Data Cleaning and handling missing values
   Self Grade: 5
   Reason: We create our own frankenstein dataset using multiple other datasets, missing values were dropped but that what deemed the best option after careful consideration
@@ -12,20 +14,27 @@
   Reason: We had to combine datasets in order to get the features we wanted to use. 
 5. Data Normalization and Scaling
   Self Grade: 5
-  Reason: We Normalized a lot of the variables especially before training a regression model. We did this using MinMaxScaler.
+  Reason: Using MinMAxScaler we normalized the variables before training a linear regression model
 6. Selection of Apprpriate ML Algorithms
-  Self Grade: 5
+  Self Grade: 4
   Reason: We tried multiple different ones like random forest, xgboost, and linear regression. There are some more we may could have tried like KNN.
 7. Model Training and Tuning
   Self Grade: 5
+  Reason: We created our various and adjusted what variables we used based off results. And even brough it HDI to contribute to the efficiency model.
 8. Evaluation Metrics and Performance Analysis
   Self Grade: 5
+  Reason: We used R^2 values to determine how well a model performed.
 9. Novelty and Originality of Approach
   Self Grade: 5
 10. Exploration of Advanced Techniques
   Self Grade: 4
+  Reason: We did make a neural network, the results were not great. but we tried nonetheless.
 11. Quality of Visualiztions and Insights
   Self Grade: 4
+  Reason: We did make graphs such as a histogram showing medal counts by country, and also scatter plots of variables againts total medals. However, we probably could have more. Our insights are effective though. 
 12. Ability to communicate results effectively
   Self Grade: 5
+  Reason: We communicated what each model we made is and what it can be used for. Most of our results can be found in the Olympic_efficiency.pdf (our powerpoint)
+
+Total : 57/60. 
   

@@ -5,6 +5,8 @@ This project analyzes Olympic performance at the country level using machine lea
 
 We transformed an individual athlete Olympic dataset into a country-level dataset and developed several predictive models to estimate Olympic medal counts using both historical performance and economic indicators.
 
+Link to our app!: https://olympic-efficiency-0c2ba2a1a652.herokuapp.com/
+
 ---
 
 # Repository Structure
